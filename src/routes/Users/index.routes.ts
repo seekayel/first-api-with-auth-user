@@ -1,7 +1,7 @@
 import express from 'express'
-import { FindUserCaseController } from '../../useCase/FindUser/FindUseCaseController'
+import { FindUseCaseCrontrollerIns } from '../../useCase/FindUser'
 const userRouter = express.Router()
 
-userRouter.get('/:email', FindUserCaseController.handle)
+userRouter.post('/auth', FindUseCaseCrontrollerIns.handle)
 
 export {userRouter}

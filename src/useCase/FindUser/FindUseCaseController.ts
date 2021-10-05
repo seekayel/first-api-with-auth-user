@@ -1,17 +1,25 @@
 import {FindUserCase} from './FindUserCase'
-import { Request, Response } from 'express'
-
+import e, { Request, Response } from 'express'
+import jwt from 'jsonwebtoken'
 export class FindUserCaseController{
-
-  public static  handle(req:Request, res:Response){
-    const {email} = req.params
+   constructor(){
+    
+  }
+  handle(req:Request, res:Response){
+    const {email, password} = req.body
+    
     const response_find = FindUserCase.findUser(email)
     if(response_find != undefined){
-      res.statusCode = 200
-      return res.json(response_find)
+      if(password == response_find.password){
+        jwt.sign({email, id:123}, 'teste', {expiresIn: 60 }, (err, token) => {
+          
+          res.json({ token})
+        })
+        return;
+      }
+      return res.status(401).json({ message: 'password incorrect.'})
     } else {
-      res.statusCode = 404
-      return res.json({
+      return res.status(404).json({
         message: 'email not found.'
       })
     }
