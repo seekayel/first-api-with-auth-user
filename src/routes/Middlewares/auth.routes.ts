@@ -6,10 +6,10 @@ export class AuthMid{
     if(authorization){
       const token = authorization.split(' ')[1]
       jwt.verify(token, 'teste', (err, dataToken) => {
-        if(Object.keys(dataToken || {}).length != 0){
-          next()
-        } else {
+        if(err){
           res.status(403).send("não foi possivel autenticar.")
+        } else {
+          next()
         }
       })
     } else {
