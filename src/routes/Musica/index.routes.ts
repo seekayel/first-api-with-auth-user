@@ -3,6 +3,6 @@ import { AuthMid } from '../Middlewares/auth.routes'
 const musicRouter = express.Router()
 
 musicRouter.get('/',AuthMid.handle, (req, res) => {
-  res.send('ok , voce entrou na rota secreta.')
+  res.json({message: 'ok , voce entrou na rota secreta.'})
 })
 export {musicRouter}
