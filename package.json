@@ -1,7 +1,7 @@
 {
   "name": "projeto-auth-usuario",
   "version": "1.0.0",
-  "main": "./dist/server.ts",
+  "main": "./src/server.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
